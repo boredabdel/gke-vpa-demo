@@ -1,4 +1,4 @@
-# Copyright 2024 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,8 +14,13 @@
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 resources:
-  - config/default
-images:
-  - name: ghcr.io/google/kube-startup-cpu-boost
-    newTag: v0.20.0 #x-release-please-version
+- examples/spring-demo-app.yaml
+# Uncomment for Google Managed Prometheus metrics scraping
+#- examples/spring-demo-app-gmp.yaml
+
+configMapGenerator:
+- name: spring-demo-app-config
+  files:
+  - application.yaml
