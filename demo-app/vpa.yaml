@@ -1,0 +1,17 @@
+apiVersion: "autoscaling.k8s.io/v1"
+kind: VerticalPodAutoscaler
+metadata:
+  name: spring-app-vpa
+  namespace: demo
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: spring-demo-app
+  updatePolicy:
+    updateMode: "Off"
+  startupBoost:
+    cpu:
+      type: "Factor"
+      factor: 2
+      durationSeconds: 30

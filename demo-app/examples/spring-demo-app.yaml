@@ -59,11 +59,8 @@ spec:
             port: http
             scheme: HTTP
         resources:
-          limits:
-            cpu: "1"
-            memory: 512Mi
           requests:
-            cpu: 500m
+            cpu: 250m
             memory: 512Mi
       volumes:
       - name: spring-demo-app-config
